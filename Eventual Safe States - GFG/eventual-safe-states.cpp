@@ -10,42 +10,35 @@ using namespace std;
 
 class Solution {
   private:
-    bool dfs(int node, vector<int> adj[], int vis[], int pathVis[],int check[]){
+    bool dfs(int node,vector<int>adj[],vector<int> & vis , vector<int> &pathVis, vector<int> & check){
         vis[node]=1;
         pathVis[node]=1;
         check[node]=0;
-        for(auto it : adj[node]){
-            if(!vis[it]){
-                if(dfs(it,adj,vis,pathVis,check)){
-                        check[it]=0;
-                        return true;
-                    }
+        for(auto x : adj[node]){
+            if(!vis[x]){
+               if(dfs(x,adj,vis,pathVis,check))return true;
             }
-            else if(pathVis[it]){
-                check[it]=0;
-                return true;
-            }
-            }
+            else if(pathVis[x]) return true;
+        }
         check[node]=1;
         pathVis[node]=0;
         return false;
     }
   public:
     vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
-        // code here
-        int vis[V]={0};
-        int pathVis[V]={0};
-        int check[V]={0};
-        vector<int>safeNodes;
-        for(int i=0;i<V;i++){
-            if(!vis[i]){
-                dfs(i,adj,vis,pathVis,check);
-            }
-        }
-        for(int i=0;i<V;i++){
-            if(check[i]==1)safeNodes.push_back(i);
-        }
-        return safeNodes;
+       vector<int>vis(V,0);
+       vector<int>pathVis(V,0);
+       vector<int>check(V,0);
+       vector<int>safeNodes;
+       for(int i=0;i<V;i++){
+           if(!vis[i]){
+               dfs(i,adj,vis,pathVis,check);
+           }
+       }
+       for(int i=0;i<V;i++){
+           if(check[i])safeNodes.push_back(i);
+       }
+       return safeNodes;
     }
 };
 
