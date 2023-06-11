@@ -103,6 +103,9 @@ class Solution
     //Function to find the vertical order traversal of Binary Tree.
     vector<int> verticalOrder(Node *root)
     {
+        //If there are multiple nodes passing through a vertical line, then they should
+        //be printed as they appear in level order traversal of the tree
+        //that's why don't use multiset instead use vector
         map<int,map<int,vector<int>>>nodes;
         queue<pair<Node * , pair<int,int>>> todo;
         todo.push({root,{0,0}});
