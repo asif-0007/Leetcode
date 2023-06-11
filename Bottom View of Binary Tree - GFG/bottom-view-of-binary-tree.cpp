@@ -107,11 +107,7 @@ class Solution {
             q.pop();
             Node * node = p.first;
             int vertical = p.second;
-            if(mp.find(vertical) == mp.end()){
-                mp[vertical]=node->data;
-            }if(mp.find(vertical) != mp.end()){
-                mp[vertical]=node->data;
-            }
+            mp[vertical]=node->data; //every time just update the value to get bottom view
             if(node->left){
                 q.push({node->left,vertical-1});
             }
