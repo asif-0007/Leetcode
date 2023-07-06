@@ -20,28 +20,30 @@ class Solution
     //Function to sort an array using quick sort algorithm.
     void quickSort(int arr[], int low, int high)
     {
-        if(low<high){
-            int pIndex = partition(arr,low,high);
-            quickSort(arr,low,pIndex-1);
-            quickSort(arr,pIndex+1,high);
+        if(low < high){
+            int p = partition(arr, low, high);
+            
+            quickSort(arr, low, p - 1);
+            quickSort(arr, p + 1, high);
         }
-        
     }
     
     public:
     int partition (int arr[], int low, int high)
     {
-       // Your code here
-        int pivot = arr[low];
-        int i = low;
-        int j = high;
-        while( i < j){
-            while(arr[i] <= pivot && i<= high - 1)i++;
-            while(arr[j] > pivot && j >= low +1)j--;
-            if(i<j)swap(arr[i],arr[j]);
-        }
-        swap(arr[low],arr[j]);
-        return j;
+       int p = low;
+       int pivot = arr[high];
+       
+       for(int i = low; i < high; i++){
+           if(arr[i] < pivot){
+               swap(arr[i], arr[p]);
+               ++p;
+           }
+       }
+       
+       swap(arr[p], arr[high]);
+       
+       return p;
     }
 };
 
