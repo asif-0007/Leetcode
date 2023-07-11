@@ -4,22 +4,13 @@ using namespace std;
 # define mod 1000000007
 
 // } Driver Code Ends
-
 class Solution{
-    
     public:
     //You need to complete this fucntion
     long long binpow(long long a, long long b) {a %= mod;long long res = 1;while (b > 0) {if (b & 1)res = res * a % mod;a = a * a % mod;b >>= 1;}return res % mod;}
-    long long power(int n,int r)
-    {   
-        n%=mod;
-        long long ans=1;
-        while(r>0){
-            if(r&1)ans = ans *1LL* n % mod;
-            n = n * 1LL * n % mod;
-            r>>=1;
-        }
-        return ans;
+    long long power(int N,int R)
+    {
+       return binpow(N,R);
     }
 
 };
