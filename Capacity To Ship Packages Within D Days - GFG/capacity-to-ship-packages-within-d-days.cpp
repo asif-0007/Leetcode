@@ -20,9 +20,6 @@ class Solution {
         }
         return ans<=days;
     }
-    int shipWithinDays(vector<int>& weights, int days) {
-        
-    }
     int leastWeightCapacity(int arr[], int N, int D) {
         // code here
         int l = 1, r = 1e9, ans = -1;
